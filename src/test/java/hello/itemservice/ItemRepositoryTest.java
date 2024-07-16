@@ -1,30 +1,55 @@
-package hello.itemservice.domain;
+package hello.itemservice;
 
-import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
+import hello.itemservice.ItemRepository;
+import hello.itemservice.ItemSearchCond;
+import hello.itemservice.ItemUpdateDto;
+import hello.itemservice.domain.Item;
 import hello.itemservice.repository.memory.MemoryItemRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Commit //일부 값을 보고 싶다면 남게 할 수 있는 방법
 @SpringBootTest
+@Transactional //DB에 데이터 없다.
 class ItemRepositoryTest {
 
     @Autowired
     ItemRepository itemRepository;
 
+    /*
+    //자동 Bean 등록
+    @Autowired
+    PlatformTransactionManager transactionManager;
+    TransactionStatus status;
+
+    @BeforeEach
+    void beforeEach() {
+        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+    }
+     */
+
     @AfterEach
     void afterEach() {
         //MemoryItemRepository 의 경우 제한적으로 사용
+        //Transaction 시작
         if (itemRepository instanceof MemoryItemRepository) {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
+        //Transaction 시작
+        //transactionManager.rollback(status);
     }
 
     @Test
@@ -87,6 +112,6 @@ class ItemRepositoryTest {
 
     void test(String itemName, Integer maxPrice, Item... items) {
         List<Item> result = itemRepository.findAll(new ItemSearchCond(itemName, maxPrice));
-        assertThat(result).containsExactly(items);
+        Assertions.assertThat(result).containsExactly(items);
     }
 }

@@ -1,4 +1,4 @@
-package hello.itemservice.repository;
+package hello.itemservice;
 
 import lombok.Data;
 
