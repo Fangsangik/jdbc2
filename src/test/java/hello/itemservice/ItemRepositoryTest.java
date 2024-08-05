@@ -65,7 +65,12 @@ class ItemRepositoryTest {
         assertThat(findItem).isEqualTo(savedItem);
     }
 
+    /*
+    update 하면 쿼리 안보일 수 있는데 이유는 내부 캐시에 저장 되어 있음
+    쿼리를 보고 싶다면 commit or flush 사용
+     */
     @Test
+    @Commit
     void updateItem() {
         //given
         Item item = new Item("item1", 10000, 10);
