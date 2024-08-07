@@ -1,7 +1,7 @@
 package hello.itemservice.repository.mybatis;
 
-import hello.itemservice.ItemSearchCond;
-import hello.itemservice.ItemUpdateDto;
+import hello.itemservice.repository.ItemSearchCond;
+import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.domain.Item;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

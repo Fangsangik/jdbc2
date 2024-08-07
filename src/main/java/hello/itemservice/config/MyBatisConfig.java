@@ -1,6 +1,6 @@
 package hello.itemservice.config;
 
-import hello.itemservice.ItemRepository;
+import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.mybatis.ItemMapper;
 import hello.itemservice.repository.mybatis.MyBatisRepository;
 import hello.itemservice.service.ItemService;

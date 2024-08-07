@@ -1,8 +1,8 @@
 package hello.itemservice.repository.mybatis;
 
-import hello.itemservice.ItemRepository;
-import hello.itemservice.ItemSearchCond;
-import hello.itemservice.ItemUpdateDto;
+import hello.itemservice.repository.ItemRepository;
+import hello.itemservice.repository.ItemSearchCond;
+import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.domain.Item;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

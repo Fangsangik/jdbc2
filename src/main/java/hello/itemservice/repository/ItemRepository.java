@@ -1,4 +1,4 @@
-package hello.itemservice;
+package hello.itemservice.repository;
 
 import hello.itemservice.domain.Item;
 
